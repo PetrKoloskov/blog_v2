@@ -13,7 +13,12 @@
                 </div><!-- /.col -->
 
             </div><!-- /.row -->
-
+            @if (session('success'))
+                <div class="alert alert-success" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h4><i class="icon fa fa-check"></i>{{ session('success') }}</h4>
+                </div>
+            @endif
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card-body p-0">
@@ -45,16 +50,20 @@
                                     </td>
                                     <td>{{$category->slug}}</td>
                                     <td class="project-actions text-right">
-                                        <a class="btn btn-info btn-sm" href="#">
+                                        <a class="btn btn-info btn-sm" href="{{route('category.edit', $category->id)}}">
                                             <i class="fas fa-pencil-alt">
                                             </i>
                                             Редактировать
                                         </a>
-                                        <a class="btn btn-danger btn-sm" href="#">
-                                            <i class="fas fa-trash">
-                                            </i>
-                                            Удалить
-                                        </a>
+                                        <form class="d-inline" action="{{route('category.destroy',$category->id)}}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm delete-btn" href="#">
+                                                <i class="fas fa-trash">
+                                                </i>
+                                                Удалить
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
