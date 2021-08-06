@@ -66,7 +66,9 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('admin.category.edit',[
+            'category'=>$category,
+        ]);
     }
 
     /**
@@ -78,7 +80,10 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $category->title = $request->title;
+        $category->slug = $request->slug;
+        $category->save();
+        return redirect()->back()->withSuccess('Категория была успешно обновлена');
     }
 
     /**
@@ -89,6 +94,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->back()->withSuccess('Категория была успешно удалена');
+
     }
 }
