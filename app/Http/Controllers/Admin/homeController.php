@@ -14,4 +14,11 @@ class homeController extends Controller
             'posts_count'=>$posts_count
         ]);
     }
+    public function search(Request $request){
+        $q=$request->q;
+        $posts=Post::where('text','LIKE',"%{$q}%")->orderBy('id')->paginate();
+        return view('admin.post.index',[
+            'posts'=>$posts
+        ]);
+    }
 }

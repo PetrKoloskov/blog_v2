@@ -26,5 +26,6 @@ Route::middleware(['role:admin'])->prefix('admin_panel')->group( function () {
     Route::get('/',[App\Http\Controllers\Admin\homeController::class, 'index'])->name('homeAdmin');
     Route::resource('category',\App\Http\Controllers\Admin\CategoryController::class);
     Route::resource('post',\App\Http\Controllers\Admin\PostController::class);
+    Route::get('/search',[App\Http\Controllers\Admin\homeController::class, 'search'])->name('adminSearch');
 
 });

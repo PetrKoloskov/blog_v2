@@ -19,4 +19,5 @@ function processSelectedFile(filePath, requestingField) {
     $('#' + requestingField).val(filePath).trigger('change');
     var src=filePath.replace('\\','/');
     $('.upload_preview').attr('src','/'+src).trigger('change');
+    $('.img_url').val('/'+src).trigger('change');
 }
